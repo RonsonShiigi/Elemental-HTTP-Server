@@ -3,8 +3,7 @@ const fs = require("fs");
 const host = "localhost";
 const port = 8080;
 const querystring = require("querystring");
-let count = 2;
-
+let count = 3;
 const server = http.createServer((req, res) => {
   //   console.log("req", req);
   const { url, method } = req;
@@ -147,7 +146,7 @@ let newIndexPage = `
   <body>
     <h1>The Elements</h1>
     <h2>These are all the known elements.</h2>
-    <h3>These are 2</h3>
+    <h3>These are ${count}</h3>
     <ol>
      
     </ol>
@@ -156,6 +155,7 @@ let newIndexPage = `
 let splitted = newIndexPage.split("</ol>");
 
 function updateHTML() {
+  count++;
   fs.readdir("public/element", (err, data) => {
     // console.log(data);
     data.map(item => {
