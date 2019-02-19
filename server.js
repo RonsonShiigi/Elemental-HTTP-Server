@@ -119,6 +119,9 @@ server.listen(port, host, () => {
   console.log("server is fucking going");
 });
 
+server.on("error", err => {
+  throw err;
+});
 const createElementFile = data => {
   const {
     elementName,
