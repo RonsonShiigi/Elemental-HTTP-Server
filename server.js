@@ -69,6 +69,16 @@ const server = http.createServer((req, res) => {
         fs.readFile("./public/element" + url, (err, data) => {
           if (err) {
             console.log(err);
+            console.log("peekaBOO");
+            fs.readFile("public/error.html", (err, data) => {
+              if (err) {
+                console.log("fuckno");
+                console.log(err);
+              } else {
+                res.write(data.toString());
+                res.end();
+              }
+            });
           } else {
             console.log(data.toString());
             res.write(data.toString());
