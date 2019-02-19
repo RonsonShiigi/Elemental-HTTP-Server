@@ -7,8 +7,8 @@ let count = 3;
 const server = http.createServer((req, res) => {
   //   console.log("req", req);
   const { url, method } = req;
-  console.log("url", url);
-  console.log(method);
+  //   console.log("url", url);
+  //   console.log(method);
   if (method === "GET") {
     switch (url) {
       case "/css/styles.css":
@@ -49,10 +49,12 @@ const server = http.createServer((req, res) => {
         break;
       case "/helium.html":
         //   console.log("helium");
+
         fs.readFile("./public/element/helium.html", (err, data) => {
           if (err) {
             console.log(err);
           } else {
+            console.log(data.toString());
             res.write(data.toString());
             res.end();
           }
@@ -62,10 +64,13 @@ const server = http.createServer((req, res) => {
         res.end();
         break;
       default:
-        fs.readFile("./public/404.html", (err, data) => {
+        console.log(url);
+        console.log(url.toString());
+        fs.readFile("./public/element" + url, (err, data) => {
           if (err) {
             console.log(err);
           } else {
+            console.log(data.toString());
             res.write(data.toString());
             res.end();
           }
@@ -112,12 +117,11 @@ const createElementFile = data => {
     elementDescription
   } = data;
 
-  let newHTML = `
-  <!DOCTYPE html>
+  let newHTML = `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>The Elements - ${elementName}/title>
+    <title>The Elements - ${elementName}</title>
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
 
@@ -131,6 +135,7 @@ const createElementFile = data => {
     <p><a href="/">back</a></p>
   </body>
 </html>`;
+
   return newHTML;
 };
 
