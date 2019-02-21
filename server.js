@@ -115,7 +115,7 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(port, host, () => {
+server.listen(port, () => {
   console.log("server is fucking going");
 });
 
